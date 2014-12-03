@@ -22,7 +22,7 @@ namespace SpaceProjectOne.Photon.Application
 
         }
 
-        public short Code
+        public byte Code
         {
             get { return _code; }
         }

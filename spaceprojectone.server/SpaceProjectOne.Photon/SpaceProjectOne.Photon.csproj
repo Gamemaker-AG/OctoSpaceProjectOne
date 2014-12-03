@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SpaceProjectOne.Photon</RootNamespace>
     <AssemblyName>SpaceProjectOne.Photon</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="ExitGames.Logging.Log4Net">
       <HintPath>..\..\..\ServerProjekt\lib\ExitGames.Logging.Log4Net.dll</HintPath>
     </Reference>
@@ -39,11 +43,12 @@
     <Reference Include="log4net">
       <HintPath>..\..\..\ServerProjekt\lib\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Photon.SocketServer">
       <HintPath>..\..\..\ServerProjekt\lib\Photon.SocketServer.dll</HintPath>
     </Reference>
     <Reference Include="PhotonHostRuntimeInterfaces">
-      <HintPath>..\..\..\ServerProjekt\lib\PhotonHostRuntimeInterfaces.dll</HintPath>
+      <HintPath>..\..\ServerProjekt\lib\PhotonHostRuntimeInterfaces.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="System" />
@@ -55,6 +60,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Application\PhotonConnectionCollection.cs" />
+    <Compile Include="Application\PhotonPeerFactory.cs" />
+    <Compile Include="Client\PhotonClientHandler.cs" />
+    <Compile Include="Client\PhotonClientHandlerList.cs" />
+    <Compile Include="Client\PhotonClientPeer.cs" />
     <Compile Include="Server\DefaultEventHandler.cs" />
     <Compile Include="Server\DefaultRequestHandler.cs" />
     <Compile Include="Server\DefaultResponseHandler.cs" />
@@ -74,7 +84,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Client\" />
+    <Fakes Include="Fakes\PhotonHostRuntimeInterfaces.fakes" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

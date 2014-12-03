@@ -1,0 +1,395 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PhotonHostRuntimeInterfaces.Fakes</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.QualityTools.Testing.Fakes.Delegates.PhotonHostRuntimeInterfacesDelegates">
+            <summary>Enthält benutzerdefinierte Delegaten für die Stubs und Shims von PhotonHostRuntimeInterfaces.</summary>
+        </member>
+        <member name="T:PhotonHostRuntimeInterfaces.Fakes.StubIControlListeners">
+            <summary>Stub-Typ von PhotonHostRuntimeInterfaces.IControlListeners</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIControlListeners.#ctor">
+            <summary>Initialisiert eine neue Instanz von type StubIControlListeners.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIControlListeners.GetListenersListenerStatusArrayOut">
+            <summary>Legt die stub von IControlListeners.GetListeners(ListenerStatus[]&amp; statuses) fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIControlListeners.phri::PhotonHostRuntimeInterfaces#IControlListeners#GetListeners(PhotonHostRuntimeInterfaces.ListenerStatus[]@)">
+            <summary>Legt die stub von IControlListeners.GetListeners(ListenerStatus[]&amp; statuses) fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIControlListeners.phri::PhotonHostRuntimeInterfaces#IControlListeners#StartListener(System.String)">
+            <summary>Legt die stub von IControlListeners.StartListener(String listener) fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIControlListeners.phri::PhotonHostRuntimeInterfaces#IControlListeners#StopListener(System.String)">
+            <summary>Legt die stub von IControlListeners.StopListener(String listener) fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIControlListeners.StartListenerString">
+            <summary>Legt die stub von IControlListeners.StartListener(String listener) fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIControlListeners.StopListenerString">
+            <summary>Legt die stub von IControlListeners.StopListener(String listener) fest.</summary>
+        </member>
+        <member name="T:PhotonHostRuntimeInterfaces.Fakes.StubILogToUnmanagedLog">
+            <summary>Stub-Typ von PhotonHostRuntimeInterfaces.ILogToUnmanagedLog</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubILogToUnmanagedLog.#ctor">
+            <summary>Initialisiert eine neue Instanz von type StubILogToUnmanagedLog.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubILogToUnmanagedLog.LogMessageString">
+            <summary>Legt die stub von ILogToUnmanagedLog.LogMessage(String message) fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubILogToUnmanagedLog.phri::PhotonHostRuntimeInterfaces#ILogToUnmanagedLog#LogMessage(System.String)">
+            <summary>Legt die stub von ILogToUnmanagedLog.LogMessage(String message) fest.</summary>
+        </member>
+        <member name="T:PhotonHostRuntimeInterfaces.Fakes.StubIManageClientConnectionCount">
+            <summary>Stub-Typ von PhotonHostRuntimeInterfaces.IManageClientConnectionCount</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIManageClientConnectionCount.#ctor">
+            <summary>Initialisiert eine neue Instanz von type StubIManageClientConnectionCount.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIManageClientConnectionCount.GetConnectionCountsInt32ArrayOutInt32ArrayOutInt32OutInt32Out">
+            <summary>Legt die stub von IManageClientConnectionCount.GetConnectionCounts(Int32[]&amp; perApplicationCurrentCount, Int32[]&amp; perApplicationMaxCount, Int32&amp; currentCount, Int32&amp; maxCount) fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIManageClientConnectionCount.GetConnectionCountsInt32ArrayOutInt32ArrayOutInt32OutInt32Out01">
+            <summary>Legt die stub von IPhotonApplicationsCounter.GetConnectionCounts(Int32[]&amp; perApplicationCurrentCount, Int32[]&amp; perApplicationMaxCount, Int32&amp; currentCount, Int32&amp; maxCount) fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIManageClientConnectionCount.phri::PhotonHostRuntimeInterfaces#IManageClientConnectionCount#GetConnectionCounts(System.Int32[]@,System.Int32[]@,System.Int32@,System.Int32@)">
+            <summary>Legt die stub von IManageClientConnectionCount.GetConnectionCounts(Int32[]&amp; perApplicationCurrentCount, Int32[]&amp; perApplicationMaxCount, Int32&amp; currentCount, Int32&amp; maxCount) fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIManageClientConnectionCount.phri::PhotonHostRuntimeInterfaces#IManageClientConnectionCount#ResetMaxCounts(System.String[],System.Boolean)">
+            <summary>Legt die stub von IManageClientConnectionCount.ResetMaxCounts(String[] applicationNames, Boolean resetTotalCount) fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIManageClientConnectionCount.phri::PhotonHostRuntimeInterfaces#IManageClientConnectionCount#resetTotalCount">
+            <summary>Legt die stub von IManageClientConnectionCount.resetTotalCount() fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIManageClientConnectionCount.phri::PhotonHostRuntimeInterfaces#IPhotonApplicationsCounter#GetConnectionCounts(System.Int32[]@,System.Int32[]@,System.Int32@,System.Int32@)">
+            <summary>Legt die stub von IPhotonApplicationsCounter.GetConnectionCounts(Int32[]&amp; perApplicationCurrentCount, Int32[]&amp; perApplicationMaxCount, Int32&amp; currentCount, Int32&amp; maxCount) fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIManageClientConnectionCount.ResetMaxCountsStringArrayBoolean">
+            <summary>Legt die stub von IManageClientConnectionCount.ResetMaxCounts(String[] applicationNames, Boolean resetTotalCount) fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIManageClientConnectionCount.ResetTotalCount">
+            <summary>Legt die stub von IManageClientConnectionCount.resetTotalCount() fest.</summary>
+        </member>
+        <member name="T:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonApplication">
+            <summary>Stub-Typ von PhotonHostRuntimeInterfaces.IPhotonApplication</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonApplication.#ctor">
+            <summary>Initialisiert eine neue Instanz von type StubIPhotonApplication.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonApplication.OnDisconnectIPhotonPeerObjectDisconnectReasonStringInt32Int32Int32">
+            <summary>Legt die stub von IPhotonApplication.OnDisconnect(IPhotonPeer peer, Object userData, DisconnectReason reasonCode, String reasonDetail, Int32 rtt, Int32 rttVariance, Int32 numFailures) fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonApplication.OnFlowControlEventIPhotonPeerObjectFlowControlEvent">
+            <summary>Legt die stub von IPhotonApplication.OnFlowControlEvent(IPhotonPeer peer, Object userData, FlowControlEvent FlowControlEvent) fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonApplication.OnInitIPhotonPeerByteArrayByte">
+            <summary>Legt die stub von IPhotonApplication.OnInit(IPhotonPeer peer, Byte[] data, Byte channelCount) fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonApplication.OnOutboundConnectionEstablishedIPhotonPeerByteArrayObject">
+            <summary>Legt die stub von IPhotonApplication.OnOutboundConnectionEstablished(IPhotonPeer peer, Byte[] data, Object userData) fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonApplication.OnOutboundConnectionFailedIPhotonPeerObjectInt32String">
+            <summary>Legt die stub von IPhotonApplication.OnOutboundConnectionFailed(IPhotonPeer peer, Object userData, Int32 errorCode, String errorMessage) fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonApplication.OnReceiveIPhotonPeerObjectByteArrayMessageReliablityByteMessageContentTypeInt32Int32Int32">
+            <summary>Legt die stub von IPhotonApplication.OnReceive(IPhotonPeer peer, Object userData, Byte[] data, MessageReliablity reliability, Byte channelId, MessageContentType MessageContentType, Int32 rtt, Int32 rttVariance, Int32 numFailures) fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonApplication.phri::PhotonHostRuntimeInterfaces#IPhotonApplication#OnDisconnect(PhotonHostRuntimeInterfaces.IPhotonPeer,System.Object,PhotonHostRuntimeInterfaces.DisconnectReason,System.String,System.Int32,System.Int32,System.Int32)">
+            <summary>Legt die stub von IPhotonApplication.OnDisconnect(IPhotonPeer peer, Object userData, DisconnectReason reasonCode, String reasonDetail, Int32 rtt, Int32 rttVariance, Int32 numFailures) fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonApplication.phri::PhotonHostRuntimeInterfaces#IPhotonApplication#OnFlowControlEvent(PhotonHostRuntimeInterfaces.IPhotonPeer,System.Object,PhotonHostRuntimeInterfaces.FlowControlEvent)">
+            <summary>Legt die stub von IPhotonApplication.OnFlowControlEvent(IPhotonPeer peer, Object userData, FlowControlEvent FlowControlEvent) fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonApplication.phri::PhotonHostRuntimeInterfaces#IPhotonApplication#OnInit(PhotonHostRuntimeInterfaces.IPhotonPeer,System.Byte[],System.Byte)">
+            <summary>Legt die stub von IPhotonApplication.OnInit(IPhotonPeer peer, Byte[] data, Byte channelCount) fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonApplication.phri::PhotonHostRuntimeInterfaces#IPhotonApplication#OnOutboundConnectionEstablished(PhotonHostRuntimeInterfaces.IPhotonPeer,System.Byte[],System.Object)">
+            <summary>Legt die stub von IPhotonApplication.OnOutboundConnectionEstablished(IPhotonPeer peer, Byte[] data, Object userData) fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonApplication.phri::PhotonHostRuntimeInterfaces#IPhotonApplication#OnOutboundConnectionFailed(PhotonHostRuntimeInterfaces.IPhotonPeer,System.Object,System.Int32,System.String)">
+            <summary>Legt die stub von IPhotonApplication.OnOutboundConnectionFailed(IPhotonPeer peer, Object userData, Int32 errorCode, String errorMessage) fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonApplication.phri::PhotonHostRuntimeInterfaces#IPhotonApplication#OnReceive(PhotonHostRuntimeInterfaces.IPhotonPeer,System.Object,System.Byte[],PhotonHostRuntimeInterfaces.MessageReliablity,System.Byte,PhotonHostRuntimeInterfaces.MessageContentType,System.Int32,System.Int32,System.Int32)">
+            <summary>Legt die stub von IPhotonApplication.OnReceive(IPhotonPeer peer, Object userData, Byte[] data, MessageReliablity reliability, Byte channelId, MessageContentType MessageContentType, Int32 rtt, Int32 rttVariance, Int32 numFailures) fest.</summary>
+        </member>
+        <member name="T:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonApplicationSink">
+            <summary>Stub-Typ von PhotonHostRuntimeInterfaces.IPhotonApplicationSink</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonApplicationSink.#ctor">
+            <summary>Initialisiert eine neue Instanz von type StubIPhotonApplicationSink.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonApplicationSink.BroadcastEventIPhotonPeerArrayByteArrayMessageReliablityByteMessageContentTypeSendResultsArrayOut">
+            <summary>Legt die stub von IPhotonApplicationSink.BroadcastEvent(IPhotonPeer[] peerList, Byte[] data, MessageReliablity reliability, Byte channelId, MessageContentType MessageContentType, SendResults[]&amp; results) fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonApplicationSink.ConnectENetStringUInt16ByteObjectObject">
+            <summary>Legt die stub von IPhotonApplicationSink.ConnectENet(String ipAddress, UInt16 port, Byte channelCount, Object userData, Object mtu) fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonApplicationSink.ConnectHixie76WebSocketStringUInt16StringStringObject">
+            <summary>Legt die stub von IPhotonApplicationSink.ConnectHixie76WebSocket(String ipAddress, UInt16 port, String url, String origin, Object userData) fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonApplicationSink.ConnectMuxStringUInt16Object">
+            <summary>Legt die stub von IPhotonApplicationSink.ConnectMux(String ipAddress, UInt16 port, Object userData) fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonApplicationSink.ConnectStringUInt16Object">
+            <summary>Legt die stub von IPhotonApplicationSink.Connect(String ipAddress, UInt16 port, Object userData) fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonApplicationSink.ConnectWebSocketStringUInt16WebSocketVersionStringStringObject">
+            <summary>Legt die stub von IPhotonApplicationSink.ConnectWebSocket(String ipAddress, UInt16 port, WebSocketVersion version, String url, String subProtocols, Object userData) fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonApplicationSink.phri::PhotonHostRuntimeInterfaces#IPhotonApplicationSink#BroadcastEvent(PhotonHostRuntimeInterfaces.IPhotonPeer[],System.Byte[],PhotonHostRuntimeInterfaces.MessageReliablity,System.Byte,PhotonHostRuntimeInterfaces.MessageContentType,PhotonHostRuntimeInterfaces.SendResults[]@)">
+            <summary>Legt die stub von IPhotonApplicationSink.BroadcastEvent(IPhotonPeer[] peerList, Byte[] data, MessageReliablity reliability, Byte channelId, MessageContentType MessageContentType, SendResults[]&amp; results) fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonApplicationSink.phri::PhotonHostRuntimeInterfaces#IPhotonApplicationSink#Connect(System.String,System.UInt16,System.Object)">
+            <summary>Legt die stub von IPhotonApplicationSink.Connect(String ipAddress, UInt16 port, Object userData) fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonApplicationSink.phri::PhotonHostRuntimeInterfaces#IPhotonApplicationSink#ConnectENet(System.String,System.UInt16,System.Byte,System.Object,System.Object)">
+            <summary>Legt die stub von IPhotonApplicationSink.ConnectENet(String ipAddress, UInt16 port, Byte channelCount, Object userData, Object mtu) fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonApplicationSink.phri::PhotonHostRuntimeInterfaces#IPhotonApplicationSink#ConnectHixie76WebSocket(System.String,System.UInt16,System.String,System.String,System.Object)">
+            <summary>Legt die stub von IPhotonApplicationSink.ConnectHixie76WebSocket(String ipAddress, UInt16 port, String url, String origin, Object userData) fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonApplicationSink.phri::PhotonHostRuntimeInterfaces#IPhotonApplicationSink#ConnectMux(System.String,System.UInt16,System.Object)">
+            <summary>Legt die stub von IPhotonApplicationSink.ConnectMux(String ipAddress, UInt16 port, Object userData) fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonApplicationSink.phri::PhotonHostRuntimeInterfaces#IPhotonApplicationSink#ConnectWebSocket(System.String,System.UInt16,PhotonHostRuntimeInterfaces.WebSocketVersion,System.String,System.String,System.Object)">
+            <summary>Legt die stub von IPhotonApplicationSink.ConnectWebSocket(String ipAddress, UInt16 port, WebSocketVersion version, String url, String subProtocols, Object userData) fest.</summary>
+        </member>
+        <member name="T:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonApplicationsCounter">
+            <summary>Stub-Typ von PhotonHostRuntimeInterfaces.IPhotonApplicationsCounter</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonApplicationsCounter.#ctor">
+            <summary>Initialisiert eine neue Instanz von type StubIPhotonApplicationsCounter.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonApplicationsCounter.GetConnectionCountsInt32ArrayOutInt32ArrayOutInt32OutInt32Out">
+            <summary>Legt die stub von IPhotonApplicationsCounter.GetConnectionCounts(Int32[]&amp; perApplicationCurrentCount, Int32[]&amp; perApplicationMaxCount, Int32&amp; currentCount, Int32&amp; maxCount) fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonApplicationsCounter.phri::PhotonHostRuntimeInterfaces#IPhotonApplicationsCounter#GetConnectionCounts(System.Int32[]@,System.Int32[]@,System.Int32@,System.Int32@)">
+            <summary>Legt die stub von IPhotonApplicationsCounter.GetConnectionCounts(Int32[]&amp; perApplicationCurrentCount, Int32[]&amp; perApplicationMaxCount, Int32&amp; currentCount, Int32&amp; maxCount) fest.</summary>
+        </member>
+        <member name="T:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonControl">
+            <summary>Stub-Typ von PhotonHostRuntimeInterfaces.IPhotonControl</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonControl.#ctor">
+            <summary>Initialisiert eine neue Instanz von type StubIPhotonControl.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonControl.OnPhotonRunning">
+            <summary>Legt die stub von IPhotonControl.OnPhotonRunning() fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonControl.OnStartStringStringIPhotonApplicationSinkIControlListenersIPhotonApplicationsCounterString">
+            <summary>Legt die stub von IPhotonControl.OnStart(String instanceName, String applicationName, IPhotonApplicationSink sink, IControlListeners listenerControl, IPhotonApplicationsCounter applicationsCounter, String unmanagedLogDirectory) fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonControl.OnStop">
+            <summary>Legt die stub von IPhotonControl.OnStop() fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonControl.OnStopRequested">
+            <summary>Legt die stub von IPhotonControl.OnStopRequested() fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonControl.phri::PhotonHostRuntimeInterfaces#IPhotonControl#OnPhotonRunning">
+            <summary>Legt die stub von IPhotonControl.OnPhotonRunning() fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonControl.phri::PhotonHostRuntimeInterfaces#IPhotonControl#OnStart(System.String,System.String,PhotonHostRuntimeInterfaces.IPhotonApplicationSink,PhotonHostRuntimeInterfaces.IControlListeners,PhotonHostRuntimeInterfaces.IPhotonApplicationsCounter,System.String)">
+            <summary>Legt die stub von IPhotonControl.OnStart(String instanceName, String applicationName, IPhotonApplicationSink sink, IControlListeners listenerControl, IPhotonApplicationsCounter applicationsCounter, String unmanagedLogDirectory) fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonControl.phri::PhotonHostRuntimeInterfaces#IPhotonControl#OnStop">
+            <summary>Legt die stub von IPhotonControl.OnStop() fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonControl.phri::PhotonHostRuntimeInterfaces#IPhotonControl#OnStopRequested">
+            <summary>Legt die stub von IPhotonControl.OnStopRequested() fest.</summary>
+        </member>
+        <member name="T:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonDomainManager">
+            <summary>Stub-Typ von PhotonHostRuntimeInterfaces.IPhotonDomainManager</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonDomainManager.#ctor">
+            <summary>Initialisiert eine neue Instanz von type StubIPhotonDomainManager.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonDomainManager.CreateAppDomainStringStringStringStringStringStringStringBooleanBooleanString">
+            <summary>Legt die stub von IPhotonDomainManager.CreateAppDomain(String name, String assemblyName, String baseDirectory, String applicationRootDirectory, String applicationDirectory, String sharedDirectory, String applicationSharedDirectory, Boolean enableShadowCopy, Boolean createPerInstanceShadowCopyCaches, String instanceName) fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonDomainManager.GetLicenseInformationIPhotonServerShutdownInt32OutStringArrayOut">
+            <summary>Legt die stub von IPhotonDomainManager.GetLicenseInformation(IPhotonServerShutdown serverShutdown, Int32&amp; maxConcurrentConnections, String[]&amp; validIPs) fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonDomainManager.InitialiseDefaultAppDomainUnhandledExceptionPolicyIUnloadApplicationDomainsILogToUnmanagedLogStringIControlListenersIManageClientConnectionCount">
+            <summary>Legt die stub von IPhotonDomainManager.InitialiseDefaultAppDomain(UnhandledExceptionPolicy UnhandledExceptionPolicy, IUnloadApplicationDomains appDomainUnloader, ILogToUnmanagedLog log, String unmanagedLogDirectory, IControlListeners listenerControl, IManageClientConnectionCount connectionCounter) fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonDomainManager.phri::PhotonHostRuntimeInterfaces#IPhotonDomainManager#CreateAppDomain(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Boolean,System.Boolean,System.String)">
+            <summary>Legt die stub von IPhotonDomainManager.CreateAppDomain(String name, String assemblyName, String baseDirectory, String applicationRootDirectory, String applicationDirectory, String sharedDirectory, String applicationSharedDirectory, Boolean enableShadowCopy, Boolean createPerInstanceShadowCopyCaches, String instanceName) fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonDomainManager.phri::PhotonHostRuntimeInterfaces#IPhotonDomainManager#GetLicenseInformation(PhotonHostRuntimeInterfaces.IPhotonServerShutdown,System.Int32@,System.String[]@)">
+            <summary>Legt die stub von IPhotonDomainManager.GetLicenseInformation(IPhotonServerShutdown serverShutdown, Int32&amp; maxConcurrentConnections, String[]&amp; validIPs) fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonDomainManager.phri::PhotonHostRuntimeInterfaces#IPhotonDomainManager#InitialiseDefaultAppDomain(PhotonHostRuntimeInterfaces.UnhandledExceptionPolicy,PhotonHostRuntimeInterfaces.IUnloadApplicationDomains,PhotonHostRuntimeInterfaces.ILogToUnmanagedLog,System.String,PhotonHostRuntimeInterfaces.IControlListeners,PhotonHostRuntimeInterfaces.IManageClientConnectionCount)">
+            <summary>Legt die stub von IPhotonDomainManager.InitialiseDefaultAppDomain(UnhandledExceptionPolicy UnhandledExceptionPolicy, IUnloadApplicationDomains appDomainUnloader, ILogToUnmanagedLog log, String unmanagedLogDirectory, IControlListeners listenerControl, IManageClientConnectionCount connectionCounter) fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonDomainManager.phri::PhotonHostRuntimeInterfaces#IPhotonDomainManager#PhotonRunning">
+            <summary>Legt die stub von IPhotonDomainManager.PhotonRunning() fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonDomainManager.phri::PhotonHostRuntimeInterfaces#IPhotonDomainManager#RequestStop">
+            <summary>Legt die stub von IPhotonDomainManager.RequestStop() fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonDomainManager.phri::PhotonHostRuntimeInterfaces#IPhotonDomainManager#Start(System.String,System.String,System.String,System.String,PhotonHostRuntimeInterfaces.IPhotonApplicationSink,PhotonHostRuntimeInterfaces.ILogToUnmanagedLog,PhotonHostRuntimeInterfaces.IControlListeners)">
+            <summary>Legt die stub von IPhotonDomainManager.Start(String assemblyName, String typeName, String instanceName, String applicationName, IPhotonApplicationSink sink, ILogToUnmanagedLog log, IControlListeners listenerControl) fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonDomainManager.phri::PhotonHostRuntimeInterfaces#IPhotonDomainManager#Stop">
+            <summary>Legt die stub von IPhotonDomainManager.Stop() fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonDomainManager.PhotonRunning">
+            <summary>Legt die stub von IPhotonDomainManager.PhotonRunning() fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonDomainManager.RequestStop">
+            <summary>Legt die stub von IPhotonDomainManager.RequestStop() fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonDomainManager.StartStringStringStringStringIPhotonApplicationSinkILogToUnmanagedLogIControlListeners">
+            <summary>Legt die stub von IPhotonDomainManager.Start(String assemblyName, String typeName, String instanceName, String applicationName, IPhotonApplicationSink sink, ILogToUnmanagedLog log, IControlListeners listenerControl) fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonDomainManager.Stop">
+            <summary>Legt die stub von IPhotonDomainManager.Stop() fest.</summary>
+        </member>
+        <member name="T:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonPeer">
+            <summary>Stub-Typ von PhotonHostRuntimeInterfaces.IPhotonPeer</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonPeer.#ctor">
+            <summary>Initialisiert eine neue Instanz von type StubIPhotonPeer.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonPeer.AbortClient">
+            <summary>Legt die stub von IPhotonPeer.AbortClient() fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonPeer.DisconnectClient">
+            <summary>Legt die stub von IPhotonPeer.DisconnectClient() fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonPeer.Flush">
+            <summary>Legt die stub von IPhotonPeer.Flush() fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonPeer.GetConnectionID">
+            <summary>Legt die stub von IPhotonPeer.GetConnectionID() fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonPeer.GetLastTouched">
+            <summary>Legt die stub von IPhotonPeer.GetLastTouched() fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonPeer.GetListenerType">
+            <summary>Legt die stub von IPhotonPeer.GetListenerType() fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonPeer.GetLocalIP">
+            <summary>Legt die stub von IPhotonPeer.GetLocalIP() fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonPeer.GetLocalPort">
+            <summary>Legt die stub von IPhotonPeer.GetLocalPort() fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonPeer.GetPeerType">
+            <summary>Legt die stub von IPhotonPeer.GetPeerType() fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonPeer.GetRemoteIP">
+            <summary>Legt die stub von IPhotonPeer.GetRemoteIP() fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonPeer.GetRemotePort">
+            <summary>Legt die stub von IPhotonPeer.GetRemotePort() fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonPeer.GetStatsInt32OutInt32OutInt32Out">
+            <summary>Legt die stub von IPhotonPeer.GetStats(Int32&amp; rtt, Int32&amp; rttVariance, Int32&amp; numFailures) fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonPeer.GetUserData">
+            <summary>Legt die stub von IPhotonPeer.GetUserData() fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonPeer.phri::PhotonHostRuntimeInterfaces#IPhotonPeer#AbortClient">
+            <summary>Legt die stub von IPhotonPeer.AbortClient() fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonPeer.phri::PhotonHostRuntimeInterfaces#IPhotonPeer#DisconnectClient">
+            <summary>Legt die stub von IPhotonPeer.DisconnectClient() fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonPeer.phri::PhotonHostRuntimeInterfaces#IPhotonPeer#Flush">
+            <summary>Legt die stub von IPhotonPeer.Flush() fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonPeer.phri::PhotonHostRuntimeInterfaces#IPhotonPeer#GetConnectionID">
+            <summary>Legt die stub von IPhotonPeer.GetConnectionID() fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonPeer.phri::PhotonHostRuntimeInterfaces#IPhotonPeer#GetLastTouched">
+            <summary>Legt die stub von IPhotonPeer.GetLastTouched() fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonPeer.phri::PhotonHostRuntimeInterfaces#IPhotonPeer#GetListenerType">
+            <summary>Legt die stub von IPhotonPeer.GetListenerType() fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonPeer.phri::PhotonHostRuntimeInterfaces#IPhotonPeer#GetLocalIP">
+            <summary>Legt die stub von IPhotonPeer.GetLocalIP() fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonPeer.phri::PhotonHostRuntimeInterfaces#IPhotonPeer#GetLocalPort">
+            <summary>Legt die stub von IPhotonPeer.GetLocalPort() fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonPeer.phri::PhotonHostRuntimeInterfaces#IPhotonPeer#GetPeerType">
+            <summary>Legt die stub von IPhotonPeer.GetPeerType() fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonPeer.phri::PhotonHostRuntimeInterfaces#IPhotonPeer#GetRemoteIP">
+            <summary>Legt die stub von IPhotonPeer.GetRemoteIP() fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonPeer.phri::PhotonHostRuntimeInterfaces#IPhotonPeer#GetRemotePort">
+            <summary>Legt die stub von IPhotonPeer.GetRemotePort() fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonPeer.phri::PhotonHostRuntimeInterfaces#IPhotonPeer#GetStats(System.Int32@,System.Int32@,System.Int32@)">
+            <summary>Legt die stub von IPhotonPeer.GetStats(Int32&amp; rtt, Int32&amp; rttVariance, Int32&amp; numFailures) fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonPeer.phri::PhotonHostRuntimeInterfaces#IPhotonPeer#GetUserData">
+            <summary>Legt die stub von IPhotonPeer.GetUserData() fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonPeer.phri::PhotonHostRuntimeInterfaces#IPhotonPeer#Send(System.Byte[],PhotonHostRuntimeInterfaces.MessageReliablity,System.Byte,PhotonHostRuntimeInterfaces.MessageContentType)">
+            <summary>Legt die stub von IPhotonPeer.Send(Byte[] data, MessageReliablity reliability, Byte channelId, MessageContentType MessageContentType) fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonPeer.phri::PhotonHostRuntimeInterfaces#IPhotonPeer#SetDebugString(System.String)">
+            <summary>Legt die stub von IPhotonPeer.SetDebugString(String debugString) fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonPeer.phri::PhotonHostRuntimeInterfaces#IPhotonPeer#SetUserData(System.Object)">
+            <summary>Legt die stub von IPhotonPeer.SetUserData(Object pObj) fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonPeer.phri::PhotonHostRuntimeInterfaces#IPhotonPeer#_InternalBroadcastSend(System.Byte[],PhotonHostRuntimeInterfaces.MessageReliablity,System.Byte,PhotonHostRuntimeInterfaces.MessageContentType)">
+            <summary>Legt die stub von IPhotonPeer._InternalBroadcastSend(Byte[] data, MessageReliablity reliability, Byte channelId, MessageContentType MessageContentType) fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonPeer.phri::PhotonHostRuntimeInterfaces#IPhotonPeer#_InternalGetPeerInfo(System.Int32)">
+            <summary>Legt die stub von IPhotonPeer._InternalGetPeerInfo(Int32 why) fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonPeer.SendByteArrayMessageReliablityByteMessageContentType">
+            <summary>Legt die stub von IPhotonPeer.Send(Byte[] data, MessageReliablity reliability, Byte channelId, MessageContentType MessageContentType) fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonPeer.SetDebugStringString">
+            <summary>Legt die stub von IPhotonPeer.SetDebugString(String debugString) fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonPeer.SetUserDataObject">
+            <summary>Legt die stub von IPhotonPeer.SetUserData(Object pObj) fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonPeer._InternalBroadcastSendByteArrayMessageReliablityByteMessageContentType">
+            <summary>Legt die stub von IPhotonPeer._InternalBroadcastSend(Byte[] data, MessageReliablity reliability, Byte channelId, MessageContentType MessageContentType) fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonPeer._InternalGetPeerInfoInt32">
+            <summary>Legt die stub von IPhotonPeer._InternalGetPeerInfo(Int32 why) fest.</summary>
+        </member>
+        <member name="T:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonServerShutdown">
+            <summary>Stub-Typ von PhotonHostRuntimeInterfaces.IPhotonServerShutdown</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonServerShutdown.#ctor">
+            <summary>Initialisiert eine neue Instanz von type StubIPhotonServerShutdown.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonServerShutdown.phri::PhotonHostRuntimeInterfaces#IPhotonServerShutdown#Shutdown(System.String)">
+            <summary>Legt die stub von IPhotonServerShutdown.Shutdown(String reason) fest.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonServerShutdown.phri::PhotonHostRuntimeInterfaces#IPhotonServerShutdown#ShutdownDueToError(System.String,System.Int32)">
+            <summary>Legt die stub von IPhotonServerShutdown.ShutdownDueToError(String reason, Int32 exitCode) fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonServerShutdown.ShutdownDueToErrorStringInt32">
+            <summary>Legt die stub von IPhotonServerShutdown.ShutdownDueToError(String reason, Int32 exitCode) fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIPhotonServerShutdown.ShutdownString">
+            <summary>Legt die stub von IPhotonServerShutdown.Shutdown(String reason) fest.</summary>
+        </member>
+        <member name="T:PhotonHostRuntimeInterfaces.Fakes.StubIUnloadApplicationDomains">
+            <summary>Stub-Typ von PhotonHostRuntimeInterfaces.IUnloadApplicationDomains</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIUnloadApplicationDomains.#ctor">
+            <summary>Initialisiert eine neue Instanz von type StubIUnloadApplicationDomains.</summary>
+        </member>
+        <member name="M:PhotonHostRuntimeInterfaces.Fakes.StubIUnloadApplicationDomains.phri::PhotonHostRuntimeInterfaces#IUnloadApplicationDomains#UnloadAppDomain(System.Int32,System.String)">
+            <summary>Legt die stub von IUnloadApplicationDomains.UnloadAppDomain(Int32 applicationDomainID, String reason) fest.</summary>
+        </member>
+        <member name="F:PhotonHostRuntimeInterfaces.Fakes.StubIUnloadApplicationDomains.UnloadAppDomainInt32String">
+            <summary>Legt die stub von IUnloadApplicationDomains.UnloadAppDomain(Int32 applicationDomainID, String reason) fest.</summary>
+        </member>
+    </members>
+</doc>

@@ -9,7 +9,7 @@ namespace SpaceProjectOne.Framework
     public interface IConnectionCollection<Server, Client>
     {
         void OnConnect(Server serverPeer);
-        void OnDissconnect(Server serverPeer);
+        void OnDisconnect(Server serverPeer);
         void OnClientConnect(Client clientPeer);
         void OnClientDisconnect(Client clientPeer);
         Server GetServerByType(int serverType);
