@@ -61,9 +61,11 @@
      <Compile Include="Assets\Scripts\Waffe_schuss.cs" />
      <Compile Include="Assets\_Scripts\Connect.cs" />
      <Compile Include="Assets\_Scripts\DynamicObjectScript.cs" />
+     <Compile Include="Assets\_Scripts\GameManager.cs" />
      <Compile Include="Assets\_Scripts\NetworkManager.cs" />
      <Compile Include="Assets\_Scripts\NetworkStartTime.cs" />
      <Compile Include="Assets\_Scripts\PlayerControlledObjectScript.cs" />
+     <Compile Include="Assets\_Scripts\StreamInput.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
  </Reference>

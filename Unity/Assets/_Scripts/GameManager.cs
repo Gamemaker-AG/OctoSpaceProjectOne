@@ -12,16 +12,16 @@ public class GameManager : MonoBehaviour
         public NetworkPlayer networkPlayer;
         public string name;
 
-        // we might want to store a bunch of content per client
+        // Spielerinfos können hier abgespeichert werden
         public double clickTime;
         public Color color;
 
-        // the GameObject that represents this players avatar in this example.  Could obviously store more info here.
+        // Das SpielerObjekt
         public GameObject go;
 
         public bool IsLocal()
         {
-            //If disconnected we are "-1"
+            //"-1" wenn wir nicht verbunden sind
             return (Network.player == networkPlayer || Network.player + "" == "-1");
         }
     }
@@ -31,7 +31,6 @@ public class GameManager : MonoBehaviour
     public static GameManager GameManagerObject;
 
 
-    // Dictionary's for player information objects, and the list of networked game objects
     public Dictionary<NetworkPlayer, PlayerInfo> playerList = new Dictionary<NetworkPlayer, PlayerInfo>();
     public Dictionary<NetworkViewID, GameObject> myGOList = new Dictionary<NetworkViewID, GameObject>();
 
@@ -51,8 +50,6 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("ShutDownServer");
 
-            // create a separate list from the value contents of the dict, so we can delete elements from the dict
-            // as we step through if we wanted (ended up not doing that here, just clear all at end).
             GameObject[] arr = new GameObject[myGOList.Count];
             myGOList.Values.CopyTo(arr, 0);
 
@@ -71,25 +68,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // shutdown client.  Clean up any data objects created by the server, any other client 
-    // cleanup code could be here.
     public void ShutDownClient()
     {
         if (Network.isClient)
         {
             Debug.Log("ShutDownClient");
 
-            // In theory, could call "RemovePlayer" as shown below, but don't need to because the server will call it when
-            // we disconnect
-            //networkView.RPC("RemovePlayer", RPCMode.All, Network.player);
-
-            // create a separate list from the value contents of the dict, so we can delete elements from the dict
-            // as we step through.  In particular, DestroyGameContent will remove things from the Dictionary.
-
-            // do a network destroy of all the objects I created, and a normal destroy of the others.
-            // We do the local Destroy of the others, because the server isn't going to destroy these.
-            // The server WILL destroy our avatar object BUT we will probably have disconnected from the server
-            // before we get the message.  
             GameObject[] arr = new GameObject[myGOList.Count];
             myGOList.Values.CopyTo(arr, 0);
 
@@ -101,7 +85,6 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
-                    // ideally we d
                     Destroy(go);
                 }
             }
@@ -147,10 +130,6 @@ public class GameManager : MonoBehaviour
         {
             if (thePlayer.go != null)
             {
-                // destroy the player go.
-                // if we created it (which is if we are the server), destroy it everywhere
-                // if we aren't the server (which is if we are disconnecting ourself), destroy the go because we
-                // probably won't get the command back from the server when it executes RemovePlayer
                 if (thePlayer.go.networkView.isMine)
                 {
                     DestroyGameContent(thePlayer.go);
@@ -180,7 +159,7 @@ public class GameManager : MonoBehaviour
     //OnServerInitiation
     void OnServerInitialized()
     {
-        // everyone has a copy of the server in their player list.  Buffered so new players get it.
+        // Jedem Spieler die Serverinstanz zukommen lassen. Buffered, damit auch neue Spieler dies bekommen
         networkView.RPC
             (
                 "AddPlayer",
@@ -195,10 +174,8 @@ public class GameManager : MonoBehaviour
                                 )
             );
 
-        // create some server content, with two different behaviors, once the server is up and running
-        //SpawnGameContent(1, Network.player, networkView.viewID);
-        //SpawnGameContent(1, Network.player, networkView.viewID);
-        //SpawnGameContent(1, Network.player, networkView.viewID);
+        // Hier kann man AI, Umgebungs oder andere vom Server gesteuerte Objekte erzeugen
+        // SpawnGameContent(1, Network.player, networkView.viewID);
     }
 
     //Nichts zu Tun hier, jeder Spieler fuegt sich selbst hinzu mit der AddPlayer Methode
@@ -232,13 +209,9 @@ public class GameManager : MonoBehaviour
                     )
             );
 
-        // tell the server to create our content.  We do this separately from "AddPlayer" because 
-        // it might eventually vary per client, and we want the eventual calls to create the content items to be 
-        // initiated by the server, not the client (AddPlayer will get called on all new clients while we
-        // are connected, but those buffered RPCs will disappear when we do)
         networkView.RPC("CreatePlayerSpecificContent", RPCMode.Server, Network.player, Network.AllocateViewID());
 
-        // here, we could do some client-specific things. 
+        //Wie immer, hier den Kram initiieren, der NUR auf der SpielerInstanz läuft
     }
 
     #endregion
@@ -256,15 +229,12 @@ public class GameManager : MonoBehaviour
         Vector3 pos = theGO.transform.position;
         Quaternion rot = theGO.transform.rotation;
 
-        // Manually allocate a NetworkViewID.  This setup assumes ALL networking for each conceptual 
-        // entity is done via the GO created below in SpawnOnNetwork, since each ViewID should only be used in
-        // one GO
+        //Manuell die viewID vom Server Festlegen, damit ist gewährleistet, das alle dieselbe für das Objekt erhalten und die Besitzrechte geklärt sind
         NetworkViewID id1 = Network.AllocateViewID();
-        // setup things locally, then issue the commands that will be sent to the clients when they
-        // connect (this is all being done when the server starts, before the clients connect!)
-        // In this simple example, exactly the same thing is done.  BUT, note that we pass in a different
-        // value for our parameter "amOwner", so that we can tell if this is being executed here on the server
-        // or being executed on the clients after starting
+
+        // Den ganzen Kram lokal erstellen und dann an den Klienten senden.
+        // amOwner == true -> läuft auf Server || amOwner == false -> läuft auf Client (wird hier nicht sooft benötigt)
+
         SpawnOnNetwork(pos, rot, id1, viewId, true, player, prefabID);
         networkView.RPC("SpawnOnNetwork", RPCMode.OthersBuffered, pos, rot, id1, viewId, false, player, prefabID);
     }
@@ -277,16 +247,18 @@ public class GameManager : MonoBehaviour
         {
             if (nv.observed != go.GetComponent<StreamInput>())
             {
-                nv.viewID = id1;  // just set the first
+                nv.viewID = id1; //Die ViewID des Servers
             }
             else if (nv.observed == go.GetComponent<StreamInput>())
             {
-                nv.viewID = viewId;
+                nv.viewID = viewId; //Die PlayerView für den InputStream
             }
             else
             {
                 nv.stateSynchronization = NetworkStateSynchronization.Off;
                 nv.enabled = false;
+
+                //Fehlverhalten von nicht korrekt eingestellen networkViews abfangen
             }
         }
 
@@ -295,13 +267,13 @@ public class GameManager : MonoBehaviour
 
     void DestroyGameContent(GameObject go)
     {
-        // only the owner of the GameObject should destroy it
+        // Nur der Besitzer darf sein Objekt zerstören
         if (go.networkView.isMine)
         {
-            // will be in the NetGOList, but construction!
+
             NetworkViewID viewID = go.networkView.viewID;
 
-            Network.RemoveRPCs(viewID);   // get rid of buffered RPC calls for this object, if any
+            Network.RemoveRPCs(viewID);   // Alle RPC Calls löschen
 
             DestroyOnNetwork(viewID, true);
             networkView.RPC("DestroyOnNetwork", RPCMode.OthersBuffered, viewID, false);
@@ -333,7 +305,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        // For this demo, we just spawn my player
+        //Momentan nur das Schiff spawnen
         SpawnGameContent(2, networkPlayer, viewId);
     }
 
@@ -345,27 +317,20 @@ public class GameManager : MonoBehaviour
         PlayerInfo pNode;
         if (!playerList.TryGetValue(np, out pNode))
         {
-            // probably need to do something more drastic here:  this should NEVER happen
             Debug.Log("SpawnOnNetwork of object #" + prefabID + " with NetWorkID " + id1.ToString() + " for NetworkPlayer " + np.ToString() + " failed, because network Player doesn't exist");
             return;
         }
 
-        // would eventually be significantly more complex, I would think.  Can do different things in the players and server,
-        // and could also do different things in each client.  But, this allows each conceptual "entity" to be created/destroyed
-        // by the server in a simple way.
         switch (prefabID)
         {
+            #region case 1: WIRD MOMENTAN NICHT BENÖTIGT
             case 1:
-                // create a server controlled, wandering cube
                 newObject = Instantiate(dynamicPrefab, pos, rot) as GameObject;
                 newObject.renderer.material.color = pNode.color;
                 newObject.name = "cube" + id1.ToString();
 
-                // add an offset to the script time, so that it's not the same for each.  
-                // NOTE:  this only gets used on the Server (look at the script)
                 if (np == Network.player)
                 {
-                    // server controlled object, so only need to set the time offset here
                     DynamicObjectScript ds = newObject.GetComponent<DynamicObjectScript>();
                     if (ds)
                     {
@@ -377,17 +342,18 @@ public class GameManager : MonoBehaviour
                     }
                 }
                 break;
+            #endregion
 
             case 2:
-                // create the content for the player avatar (another Cube!)
+
                 newObject = Instantiate(clientControlledPrefab, pos, rot) as GameObject;
                 newObject.renderer.material.color = pNode.color;
                 newObject.name = "Player" + np.ToString();
 
-                // save the player avatar in the player list here on the server
+
                 pNode.go = newObject;
 
-                // make a note of if this is my player (even though it's created by the server)
+
                 PlayerControlledObjectScript ps = newObject.GetComponent<PlayerControlledObjectScript>();
                 if (ps)
                 {
@@ -405,16 +371,8 @@ public class GameManager : MonoBehaviour
                 return;
         }
 
-        // Set networkviewID everywhere in the game object. Just set the one, but it could be the case that eventually we
-        // pass more than one along, and then need to set it in here.
+
         SetNetworkViewIDs(newObject.gameObject, id1, viewId);
-
-        // keep track of our network game objects in a dictionary, so we can rapidly find objects based on their network
-        // view ID.
-        // In the "authoritative server" setup here, most (or all) network objects (especially those that can be moved around
-        // by the game) are created by the server, but you could imagine the client creating other objects
-        // that only they control
-
         myGOList.Add(id1, newObject);
     }
 
@@ -422,8 +380,7 @@ public class GameManager : MonoBehaviour
     void DestroyOnNetwork(NetworkViewID id, bool amOwner)
     {
         GameObject go;
-        // make sure it still exists, just in case we destroyed it locally (e.g., because we shutdown the client
-        // and this message got here before the shutdown finished!)
+        //Erst checken ob es noch existier, dann löschen
         if (myGOList.TryGetValue(id, out go))
         {
             myGOList.Remove(id);
