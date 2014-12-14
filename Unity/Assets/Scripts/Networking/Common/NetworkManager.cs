@@ -349,7 +349,7 @@ public class NetworkManager : MonoBehaviour
                 pNode.go = newObject;
 
                 // MeinenAvatar mir Zuordenen (da auf Server erstellt)
-                PlayerControlledObjectScript playerControlledObject = newObject.GetComponent<PlayerControlledObjectScript>();
+                StreamToClients playerControlledObject = newObject.GetComponent<StreamToClients>();
                 if (playerControlledObject)
                 {
                     playerControlledObject.player = networkPlayer;

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ShipTypes>
+  <Ship Type="1">
+    <Displayname>Spectrum</Displayname>
+    <MaxSpeedSTL>100</MaxSpeedSTL>
+    <MaxSpeedFTL>10000</MaxSpeedFTL>
+    <MaxSTLAcceleration>50</MaxSTLAcceleration>
+    <MaxFTLAcceleration>5000</MaxFTLAcceleration>
+    <MaxRotationSpeed>25</MaxRotationSpeed>
+    <MaxAxisTorque>40</MaxAxisTorque>
+  </Ship>
+  <Ship Type="2">
+    <Displayname>Normandy</Displayname>
+    <MaxSpeedSTL>120</MaxSpeedSTL>
+    <MaxSpeedFTL>40000</MaxSpeedFTL>
+    <MaxSTLAcceleration>20</MaxSTLAcceleration>
+    <MaxFTLAcceleration>7500</MaxFTLAcceleration>
+    <MaxRotationSpeed>25</MaxRotationSpeed>
+    <MaxAxisTorque>40</MaxAxisTorque>
+  </Ship>
+</ShipTypes>

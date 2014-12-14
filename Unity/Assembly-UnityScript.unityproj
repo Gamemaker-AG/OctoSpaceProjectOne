@@ -46,7 +46,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Ship\ExperimentelleSchiffssteuerung\RCS.js" />
+     <Compile Include="Assets\Scripts\ShipSystem\PlayerControl\ExperimentelleSchiffssteuerung\RCS.js" />
+     <None Include="Assets\Scripts\Config\ShipInfo.xml" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
  </Reference>

@@ -6,6 +6,8 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager GameManagerObject;
+
     public class PlayerInfo
     {
         // network name of the player
@@ -13,6 +15,7 @@ public class GameManager : MonoBehaviour
         public string name;
 
         // Spielerinfos können hier abgespeichert werden
+        public int PlayerPosition = -1; //"-1" heißt der Spieler hat noch keine Position
         public double clickTime;
         public Color color;
 
@@ -26,9 +29,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public GameObject clientControlledPrefab;
-    public GameObject dynamicPrefab;
-    public static GameManager GameManagerObject;
+
+    //Prefabs für die Spieler
+    public GameObject HelmPrefab;
+    public GameObject WeaponPrefab;
+    public GameObject EngineerPrefab;
+    public GameObject ServerPrefab;
+
 
 
     public Dictionary<NetworkPlayer, PlayerInfo> playerList = new Dictionary<NetworkPlayer, PlayerInfo>();
@@ -98,12 +105,12 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-    #region Handling PlayerConnect and Disconnect
+    #region [RPC] Handling PlayerConnect and Disconnect
 
     [RPC]
-    void AddPlayer(NetworkPlayer networkPlayer, string pname, Vector3 color)
+    void AddPlayer(NetworkPlayer networkPlayer, int pPosition, string pname, Vector3 color)
     {
-        Debug.Log("AddPlayer " + networkPlayer + " name=" + pname);
+        Debug.Log("AddPlayer " + networkPlayer + " name=" + pname + " position=" + pPosition);
         if (playerList.ContainsKey(networkPlayer))
         {
             Debug.LogError("AddPlayer: Player " + networkPlayer + " already exists!");
@@ -116,6 +123,7 @@ public class GameManager : MonoBehaviour
         pla.clickTime = 0;
         pla.go = null;
         pla.color = new Color(color.x, color.y, color.z);
+        pla.PlayerPosition = pPosition;
         playerList[networkPlayer] = pla;
     }
 
@@ -165,6 +173,7 @@ public class GameManager : MonoBehaviour
                 "AddPlayer",
                 RPCMode.AllBuffered,
                 Network.player,
+                0, //SpielerPosition -> Server
                 PlayerPrefs.GetString("playerName"),
 
                     new Vector3(
@@ -175,7 +184,7 @@ public class GameManager : MonoBehaviour
             );
 
         // Hier kann man AI, Umgebungs oder andere vom Server gesteuerte Objekte erzeugen
-        // SpawnGameContent(1, Network.player, networkView.viewID);
+        // SpawnGameContent(0, Network.player, networkView.viewID);
     }
 
     //Nichts zu Tun hier, jeder Spieler fuegt sich selbst hinzu mit der AddPlayer Methode
@@ -192,24 +201,69 @@ public class GameManager : MonoBehaviour
 
     #region UnityNetworkinEvents on Client
 
-    void OnConnectedToServer()
+    public void ConnectToServer(int position)
     {
+
         //Beim Server Registrieren, Buffern, damit später dazustoßende Spieler auch den Aufruf von mir erhalten
-        networkView.RPC
-            (
-                "AddPlayer",
-                RPCMode.AllBuffered,
-                Network.player,
-                PlayerPrefs.GetString("playerName"),
+        Debug.Log("Try Connect with PlayerPosition " + position);
+        switch (position)
+        {
+            case 1:
+                networkView.RPC
+                    (
+                        "AddPlayer",
+                        RPCMode.AllBuffered,
+                        Network.player,
+                        position,
+                        PlayerPrefs.GetString("playerName"),
 
-                new Vector3(
-                    Random.Range(0.5f, 1f),
-                    Random.Range(0.5f, 1f),
-                    Random.Range(0.1f, 0.5f)
-                    )
-            );
+                        new Vector3(
+                            Random.Range(0.5f, 1f),
+                            Random.Range(0.5f, 1f),
+                            Random.Range(0.1f, 0.5f)
+                            )
+                    );
+                break;
+            case 2:
+                networkView.RPC
+                    (
+                        "AddPlayer",
+                        RPCMode.AllBuffered,
+                        Network.player,
+                        position,
+                        PlayerPrefs.GetString("playerName"),
 
-        networkView.RPC("CreatePlayerSpecificContent", RPCMode.Server, Network.player, Network.AllocateViewID());
+                        new Vector3(
+                            Random.Range(0.5f, 1f),
+                            Random.Range(0.5f, 1f),
+                            Random.Range(0.1f, 0.5f)
+                            )
+                    );
+                break;
+            case 3:
+                networkView.RPC
+                    (
+                        "AddPlayer",
+                        RPCMode.AllBuffered,
+                        Network.player,
+                        position,
+                        PlayerPrefs.GetString("playerName"),
+
+                        new Vector3(
+                            Random.Range(0.5f, 1f),
+                            Random.Range(0.5f, 1f),
+                            Random.Range(0.1f, 0.5f)
+                            )
+                    );
+                break;
+            default:
+                Debug.Log("Invalid PlayerPosition selected.");
+                break;
+        }
+
+
+
+        networkView.RPC("CreatePlayerSpecificContent", RPCMode.Server, Network.player, Network.AllocateViewID(), position);
 
         //Wie immer, hier den Kram initiieren, der NUR auf der SpielerInstanz läuft
     }
@@ -218,7 +272,7 @@ public class GameManager : MonoBehaviour
 
     #region Spawning and Destruction of GameContent
 
-    void SpawnGameContent(int prefabID, NetworkPlayer player, NetworkViewID viewId)
+    void SpawnGameContent(int playerPosition, NetworkPlayer player, NetworkViewID viewId)
     {
         //Spawn local player
         Debug.Log("SpawnGameContent ");
@@ -235,8 +289,8 @@ public class GameManager : MonoBehaviour
         // Den ganzen Kram lokal erstellen und dann an den Klienten senden.
         // amOwner == true -> läuft auf Server || amOwner == false -> läuft auf Client (wird hier nicht sooft benötigt)
 
-        SpawnOnNetwork(pos, rot, id1, viewId, true, player, prefabID);
-        networkView.RPC("SpawnOnNetwork", RPCMode.OthersBuffered, pos, rot, id1, viewId, false, player, prefabID);
+        SpawnOnNetwork(pos, rot, id1, viewId, true, player, playerPosition);
+        networkView.RPC("SpawnOnNetwork", RPCMode.OthersBuffered, pos, rot, id1, viewId, false, player, playerPosition);
     }
 
     void SetNetworkViewIDs(GameObject go, NetworkViewID id1, NetworkViewID viewId)
@@ -245,11 +299,11 @@ public class GameManager : MonoBehaviour
 
         foreach (NetworkView nv in nViews)
         {
-            if (nv.observed != go.GetComponent<StreamInput>())
+            if (nv.observed == go.GetComponent<StreamToClients>())
             {
                 nv.viewID = id1; //Die ViewID des Servers
             }
-            else if (nv.observed == go.GetComponent<StreamInput>())
+            else if (nv.observed != go.GetComponent<StreamToClients>())
             {
                 nv.viewID = viewId; //Die PlayerView für den InputStream
             }
@@ -291,7 +345,7 @@ public class GameManager : MonoBehaviour
     // create the content for this client.  The RPC call is made from the server, because all shared game objects are created
     // in the server and managed there (so the server has control over them!)
     [RPC]
-    void CreatePlayerSpecificContent(NetworkPlayer networkPlayer, NetworkViewID viewId)
+    void CreatePlayerSpecificContent(NetworkPlayer networkPlayer, NetworkViewID viewId, int pPosition)
     {
         if (!Network.isServer)
         {
@@ -306,26 +360,27 @@ public class GameManager : MonoBehaviour
         }
 
         //Momentan nur das Schiff spawnen
-        SpawnGameContent(2, networkPlayer, viewId);
+        SpawnGameContent(pPosition, networkPlayer, viewId);
     }
 
 
     [RPC]
-    void SpawnOnNetwork(Vector3 pos, Quaternion rot, NetworkViewID id1, NetworkViewID viewId, bool amOwner, NetworkPlayer np, int prefabID)
+    void SpawnOnNetwork(Vector3 pos, Quaternion rot, NetworkViewID id1, NetworkViewID viewId, bool amOwner, NetworkPlayer np, int playerPosition)
     {
         GameObject newObject;
         PlayerInfo pNode;
         if (!playerList.TryGetValue(np, out pNode))
         {
-            Debug.Log("SpawnOnNetwork of object #" + prefabID + " with NetWorkID " + id1.ToString() + " for NetworkPlayer " + np.ToString() + " failed, because network Player doesn't exist");
+            Debug.Log("SpawnOnNetwork of object #" + playerPosition + " with NetWorkID " + id1.ToString() + " for NetworkPlayer " + np.ToString() + " failed, because network Player doesn't exist");
             return;
         }
 
-        switch (prefabID)
+        switch (playerPosition)
         {
-            #region case 1: WIRD MOMENTAN NICHT BENÖTIGT
-            case 1:
-                newObject = Instantiate(dynamicPrefab, pos, rot) as GameObject;
+            #region case 0: WIRD MOMENTAN NICHT BENÖTIGT -> SERVER SEITIG
+
+            case 0:
+                newObject = Instantiate(ServerPrefab, pos, rot) as GameObject;
                 newObject.renderer.material.color = pNode.color;
                 newObject.name = "cube" + id1.ToString();
 
@@ -342,32 +397,86 @@ public class GameManager : MonoBehaviour
                     }
                 }
                 break;
+
             #endregion
 
-            case 2:
+            #region 1: Helm (Erzeugt das Schiff)
+            case 1:
 
-                newObject = Instantiate(clientControlledPrefab, pos, rot) as GameObject;
-                newObject.renderer.material.color = pNode.color;
+                newObject = Instantiate(HelmPrefab, pos, rot) as GameObject;
+                //newObject.renderer.material.color = pNode.color;
                 newObject.name = "Player" + np.ToString();
-
+                newObject.GetComponent<Ship>().ShipID = newObject.name;
 
                 pNode.go = newObject;
 
 
-                PlayerControlledObjectScript ps = newObject.GetComponent<PlayerControlledObjectScript>();
-                if (ps)
+                StreamToClients streamToClients1 = newObject.GetComponent<StreamToClients>();
+                if (streamToClients1)
                 {
-                    ps.player = np;
-                    ps.isMyPlayer = (np == Network.player);
+                    streamToClients1.player = np;
+                    streamToClients1.isMyPlayer = (np == Network.player);
                 }
                 else
                 {
                     Debug.Log("Player Object does not have PlayerControlledObjectScript attached");
                 }
                 break;
+            #endregion
+
+            #region 2: Weapons
+            // SOLL SICH DAS SCHIFF ZUORDNEN!!!
+
+            case 2:
+
+                newObject = Instantiate(WeaponPrefab, pos, rot) as GameObject;
+                //newObject.renderer.material.color = pNode.color;
+                newObject.name = "Player" + np.ToString();
+
+
+                pNode.go = newObject;
+
+
+                StreamToClients streamToClients2 = newObject.GetComponent<StreamToClients>();
+                if (streamToClients2)
+                {
+                    streamToClients2.player = np;
+                    streamToClients2.isMyPlayer = (np == Network.player);
+                }
+                else
+                {
+                    Debug.Log("Player Object does not have PlayerControlledObjectScript attached");
+                }
+                break;
+            #endregion
+
+            #region 3: Engineer
+            // SOLL SICH DAS SCHIFFS ZUORDNEN TODO!!!
+            case 3:
+
+                newObject = Instantiate(EngineerPrefab, pos, rot) as GameObject;
+                //newObject.renderer.material.color = pNode.color;
+                newObject.name = "Player" + np.ToString();
+
+
+                pNode.go = newObject;
+
+
+                StreamToClients streamToClients3 = newObject.GetComponent<StreamToClients>();
+                if (streamToClients3)
+                {
+                    streamToClients3.player = np;
+                    streamToClients3.isMyPlayer = (np == Network.player);
+                }
+                else
+                {
+                    Debug.Log("Player Object does not have PlayerControlledObjectScript attached");
+                }
+                break;
+            #endregion
 
             default:
-                Debug.Log("Invalid prefab ID = " + prefabID);
+                Debug.Log("Invalid prefab ID = " + playerPosition);
                 return;
         }
 

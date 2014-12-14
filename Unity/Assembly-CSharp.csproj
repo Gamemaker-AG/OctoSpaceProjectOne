@@ -53,18 +53,22 @@
      <Compile Include="Assets\Scripts\Networking\Common\Connect.cs" />
      <Compile Include="Assets\Scripts\Networking\Common\GameManager.cs" />
      <Compile Include="Assets\Scripts\Networking\Common\NetworkManager.cs" />
-     <Compile Include="Assets\Scripts\Networking\Player\PlayerControlledObjectScript.cs" />
+     <Compile Include="Assets\Scripts\Networking\Player\StreamToClients.cs" />
      <Compile Include="Assets\Scripts\Networking\Server\DynamicObjectScript.cs" />
-     <Compile Include="Assets\Scripts\PlayerControl\StreamInput.cs" />
-     <Compile Include="Assets\Scripts\Ship\EnableAndDisableShild.cs" />
-     <Compile Include="Assets\Scripts\Ship\EnemyTakeDMG.cs" />
-     <Compile Include="Assets\Scripts\Ship\EnergieVerteilung.cs" />
-     <Compile Include="Assets\Scripts\Ship\ExperimentelleSchiffssteuerung\ShipController.cs" />
-     <Compile Include="Assets\Scripts\Ship\ExperimentelleSchiffssteuerung\ShipOrientationControl.cs" />
-     <Compile Include="Assets\Scripts\WeaponControl\Waffe_Bewegung.cs" />
-     <Compile Include="Assets\Scripts\WeaponControl\Waffe_Projektil.cs" />
-     <Compile Include="Assets\Scripts\WeaponControl\Waffe_Schuss_Railgun.cs" />
-     <Compile Include="Assets\Scripts\WeaponControl\Waffe_schuss.cs" />
+     <Compile Include="Assets\Scripts\ShipSystem\EnableAndDisableShild.cs" />
+     <Compile Include="Assets\Scripts\ShipSystem\EnemyTakeDMG.cs" />
+     <Compile Include="Assets\Scripts\ShipSystem\EnergieVerteilung.cs" />
+     <Compile Include="Assets\Scripts\ShipSystem\Engineer\Engineer.cs" />
+     <Compile Include="Assets\Scripts\ShipSystem\PlayerControl\ExperimentelleSchiffssteuerung\ShipController.cs" />
+     <Compile Include="Assets\Scripts\ShipSystem\PlayerControl\ExperimentelleSchiffssteuerung\ShipOrientationControl.cs" />
+     <Compile Include="Assets\Scripts\ShipSystem\PlayerControl\StreamHelmInput.cs" />
+     <Compile Include="Assets\Scripts\ShipSystem\Ship.cs" />
+     <Compile Include="Assets\Scripts\ShipSystem\Weapon\Weapon.cs" />
+     <Compile Include="Assets\Scripts\ShipSystem\WeaponControl\Waffe_Bewegung.cs" />
+     <Compile Include="Assets\Scripts\ShipSystem\WeaponControl\Waffe_Projektil.cs" />
+     <Compile Include="Assets\Scripts\ShipSystem\WeaponControl\Waffe_Schuss_Railgun.cs" />
+     <Compile Include="Assets\Scripts\ShipSystem\WeaponControl\Waffe_schuss.cs" />
+     <None Include="Assets\Scripts\Config\ShipInfo.xml" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
  </Reference>
