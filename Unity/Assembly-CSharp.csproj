@@ -48,23 +48,23 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\CamControl.cs" />
      <Compile Include="Assets\Scripts\CameraMovement.cs" />
-     <Compile Include="Assets\Scripts\EnableAndDisableShild.cs" />
-     <Compile Include="Assets\Scripts\EnemyTakeDMG.cs" />
-     <Compile Include="Assets\Scripts\EnergieVerteilung.cs" />
+     <Compile Include="Assets\Scripts\Enviroment\InfiniteStarfield.cs" />
      <Compile Include="Assets\Scripts\FlyCam.cs" />
-     <Compile Include="Assets\Scripts\InfiniteStarfield.cs" />
      <Compile Include="Assets\Scripts\Networking\Common\Connect.cs" />
      <Compile Include="Assets\Scripts\Networking\Common\GameManager.cs" />
      <Compile Include="Assets\Scripts\Networking\Common\NetworkManager.cs" />
      <Compile Include="Assets\Scripts\Networking\Player\PlayerControlledObjectScript.cs" />
-     <Compile Include="Assets\Scripts\Networking\Player\StreamInput.cs" />
      <Compile Include="Assets\Scripts\Networking\Server\DynamicObjectScript.cs" />
-     <Compile Include="Assets\Scripts\ShipController.cs" />
-     <Compile Include="Assets\Scripts\ShipOrientationControl.cs" />
-     <Compile Include="Assets\Scripts\Waffe_Bewegung.cs" />
-     <Compile Include="Assets\Scripts\Waffe_Projektil.cs" />
-     <Compile Include="Assets\Scripts\Waffe_Schuss_Railgun.cs" />
-     <Compile Include="Assets\Scripts\Waffe_schuss.cs" />
+     <Compile Include="Assets\Scripts\PlayerControl\StreamInput.cs" />
+     <Compile Include="Assets\Scripts\Ship\EnableAndDisableShild.cs" />
+     <Compile Include="Assets\Scripts\Ship\EnemyTakeDMG.cs" />
+     <Compile Include="Assets\Scripts\Ship\EnergieVerteilung.cs" />
+     <Compile Include="Assets\Scripts\Ship\ExperimentelleSchiffssteuerung\ShipController.cs" />
+     <Compile Include="Assets\Scripts\Ship\ExperimentelleSchiffssteuerung\ShipOrientationControl.cs" />
+     <Compile Include="Assets\Scripts\WeaponControl\Waffe_Bewegung.cs" />
+     <Compile Include="Assets\Scripts\WeaponControl\Waffe_Projektil.cs" />
+     <Compile Include="Assets\Scripts\WeaponControl\Waffe_Schuss_Railgun.cs" />
+     <Compile Include="Assets\Scripts\WeaponControl\Waffe_schuss.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
  </Reference>
