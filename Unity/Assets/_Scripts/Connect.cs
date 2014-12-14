@@ -1,11 +1,23 @@
+// CS4455 networking sample.  Blair MacIntyre, 2013.
+// 
+// Demonstrates a strict authoritative server, where all content is created
+// by the server, and interactions between objects are only reacted to on the server (with results sent 
+// to the clients via RPC calls).
+//
+// Also demonstrates a simple use of the game lobby for setup.
+//
+// Some networking content drawn from the "Ultimate Unity networking project" by M2H (http://www.M2H.nl) and 
+// from http://www.paladinstudios.com/2013/07/10/how-to-create-an-online-multiplayer-game-with-unity/
+//
+
 using UnityEngine;
 using System.Collections;
 
 public class Connect : MonoBehaviour
 {
 	// we'll use Unity's game lobby
-    private const string typeName = "SPO UHH GMAG";
-    private const string gameName = "The Masters Fantastic Game";
+    private const string typeName = "CS4455F13 Network Sample";
+    private const string gameName = "Blair's Game";
 	public int connectPort = 25001;
 
     private bool isRefreshingHostList = false;
@@ -70,12 +82,12 @@ public class Connect : MonoBehaviour
 
 			if (GUILayout.Button ("Disconnect"))
 			{
-				//NetworkManager GM = GameObject.Find("code").GetComponent<NetworkManager>();
+				//GameManager GM = GameObject.Find("code").GetComponent<GameManager>();
 				if (Network.isServer)
 				{
-					if (NetworkManager.SP != null) NetworkManager.SP.ShutDownServer();
+                    if (GameManager.GameManagerObject != null) GameManager.GameManagerObject.ShutDownServer();
 				} else {
-					if (NetworkManager.SP != null) NetworkManager.SP.ShutDownClient();
+                    if (GameManager.GameManagerObject != null) GameManager.GameManagerObject.ShutDownClient();
 				}
 				Network.Disconnect();
 			}

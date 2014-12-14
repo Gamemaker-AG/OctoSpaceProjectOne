@@ -2,20 +2,21 @@ using UnityEngine;
 using System.Collections;
 
 public class DynamicObjectScript : MonoBehaviour {
+//This is mostly copied from tut 2B 
 
 	public float scale = 0f;
 	public float offset = 0f;
 
-
+	// the server modifies these game objects
 	void Update (){
-		//if(networkView.isMine){
+		if(networkView.isMine){
 			//Only the owner can move the cube!	
 			//(Ok this check is a bit overkill since we did already disable the script in Awake)	
 			float noiseX = Mathf.PerlinNoise(Time.time + offset, 0) - 0.5f;
 			float noiseZ = Mathf.PerlinNoise(Time.time - offset, 0) - 0.5f;
 			Vector3 moveDirection = new Vector3(noiseX * scale, 0, noiseZ * scale);
 			transform.Translate(moveDirection * Time.deltaTime);
-		//}
+		}
 	}
 	
 	// changes to these server-controlled objects are streamed to the clients
