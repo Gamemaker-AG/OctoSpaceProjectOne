@@ -18,7 +18,8 @@ public class GameManager : MonoBehaviour
 
         // Spielerinfos können hier abgespeichert werden
         public int PlayerPosition = -1; //"-1" heißt der Spieler hat noch keine Position
-        public string ShipId;
+        public double clickTime;
+        public Color color;
 
         // Das SpielerObjekt
         public GameObject go;
@@ -48,6 +49,7 @@ public class GameManager : MonoBehaviour
         GameManagerObject = this;
         Network.isMessageQueueRunning = true;
     }
+
 
     #region Handling Shutdown of Client and Server
 
@@ -108,9 +110,9 @@ public class GameManager : MonoBehaviour
     #region [RPC] Handling PlayerConnect and Disconnect
 
     [RPC]
-    void AddPlayer(NetworkPlayer networkPlayer, int pPosition, string pName, string shipID)
+    void AddPlayer(NetworkPlayer networkPlayer, int pPosition, string pname, Vector3 color)
     {
-        Debug.Log("AddPlayer " + networkPlayer + ", name= " + pName + ", position= " + pPosition);
+        Debug.Log("AddPlayer " + networkPlayer + " name=" + pname + " position=" + pPosition);
         if (playerList.ContainsKey(networkPlayer))
         {
             Debug.LogError("AddPlayer: Player " + networkPlayer + " already exists!");
@@ -119,10 +121,11 @@ public class GameManager : MonoBehaviour
 
         PlayerInfo pla = new PlayerInfo();
         pla.networkPlayer = networkPlayer;
-        pla.name = pName;
+        pla.name = pname;
+        pla.clickTime = 0;
         pla.go = null;
+        pla.color = new Color(color.x, color.y, color.z);
         pla.PlayerPosition = pPosition;
-        pla.ShipId = shipID;
         playerList[networkPlayer] = pla;
     }
 
@@ -173,12 +176,17 @@ public class GameManager : MonoBehaviour
                 RPCMode.AllBuffered,
                 Network.player,
                 0, //SpielerPosition -> Server
-                "Server",  //PlayerPrefs.GetString("playerName"),
-                "0" //Will be used as ServerID
+                PlayerPrefs.GetString("playerName"),
+
+                    new Vector3(
+                        Random.Range(0.1f, 0.4f),
+                        Random.Range(0.5f, 0.75f),
+                        Random.Range(0.25f, 1f)
+                                )
             );
 
         // Hier kann man AI, Umgebungs oder andere vom Server gesteuerte Objekte erzeugen
-        SpawnGameContent(0, "11535", Network.player, networkView.viewID);
+        // SpawnGameContent(0, Network.player, networkView.viewID);
     }
 
     //Nichts zu Tun hier, jeder Spieler fuegt sich selbst hinzu mit der AddPlayer Methode
@@ -195,7 +203,7 @@ public class GameManager : MonoBehaviour
 
     #region UnityNetworkinEvents on Client
 
-    public void ConnectToServer(int position, string shipId)
+    public void ConnectToServer(int position)
     {
 
         //Beim Server Registrieren, Buffern, damit später dazustoßende Spieler auch den Aufruf von mir erhalten
@@ -210,7 +218,12 @@ public class GameManager : MonoBehaviour
                         Network.player,
                         position,
                         PlayerPrefs.GetString("playerName"),
-                        shipId
+
+                        new Vector3(
+                            Random.Range(0.5f, 1f),
+                            Random.Range(0.5f, 1f),
+                            Random.Range(0.1f, 0.5f)
+                            )
                     );
                 break;
             case 2:
@@ -221,7 +234,12 @@ public class GameManager : MonoBehaviour
                         Network.player,
                         position,
                         PlayerPrefs.GetString("playerName"),
-                        shipId
+
+                        new Vector3(
+                            Random.Range(0.5f, 1f),
+                            Random.Range(0.5f, 1f),
+                            Random.Range(0.1f, 0.5f)
+                            )
                     );
                 break;
             case 3:
@@ -232,7 +250,12 @@ public class GameManager : MonoBehaviour
                         Network.player,
                         position,
                         PlayerPrefs.GetString("playerName"),
-                        shipId
+
+                        new Vector3(
+                            Random.Range(0.5f, 1f),
+                            Random.Range(0.5f, 1f),
+                            Random.Range(0.1f, 0.5f)
+                            )
                     );
                 break;
             default:
@@ -242,7 +265,7 @@ public class GameManager : MonoBehaviour
 
 
 
-        networkView.RPC("CreatePlayerSpecificContent", RPCMode.Server, Network.player, Network.AllocateViewID(), position, shipId);
+        networkView.RPC("CreatePlayerSpecificContent", RPCMode.Server, Network.player, Network.AllocateViewID(), position);
 
         //Wie immer, hier den Kram initiieren, der NUR auf der SpielerInstanz läuft
     }
@@ -251,7 +274,7 @@ public class GameManager : MonoBehaviour
 
     #region Spawning and Destruction of GameContent
 
-    void SpawnGameContent(int playerPosition, string shipId, NetworkPlayer player, NetworkViewID viewId)
+    void SpawnGameContent(int playerPosition, NetworkPlayer player, NetworkViewID viewId)
     {
         //Spawn local player
         Debug.Log("SpawnGameContent ");
@@ -268,8 +291,8 @@ public class GameManager : MonoBehaviour
         // Den ganzen Kram lokal erstellen und dann an den Klienten senden.
         // amOwner == true -> läuft auf Server || amOwner == false -> läuft auf Client (wird hier nicht sooft benötigt)
 
-        SpawnOnNetwork(pos, rot, id1, viewId, true, player, playerPosition, shipId);
-        networkView.RPC("SpawnOnNetwork", RPCMode.OthersBuffered, pos, rot, id1, viewId, false, player, playerPosition, shipId);
+        SpawnOnNetwork(pos, rot, id1, viewId, true, player, playerPosition);
+        networkView.RPC("SpawnOnNetwork", RPCMode.OthersBuffered, pos, rot, id1, viewId, false, player, playerPosition);
     }
 
     void SetNetworkViewIDs(GameObject go, NetworkViewID id1, NetworkViewID viewId, int playerPosition)
@@ -278,12 +301,10 @@ public class GameManager : MonoBehaviour
 
         foreach (NetworkView nv in nViews)
         {
-
-            if (nv.observed == go.GetComponent<StreamToClients>()) nv.viewID = id1; //Die ViewID des Servers
-
             switch (playerPosition)
             {
                 case 0:
+                    if (nv.observed == go.GetComponent<StreamToClients>()) nv.viewID = id1; //Die ViewID des Servers
                     break;
                 case 1:
                     if (nv.observed == go.GetComponent<StreamHelmInput>()) nv.viewID = viewId; //Die ViewID des Klienten
@@ -330,7 +351,7 @@ public class GameManager : MonoBehaviour
     // create the content for this client.  The RPC call is made from the server, because all shared game objects are created
     // in the server and managed there (so the server has control over them!)
     [RPC]
-    void CreatePlayerSpecificContent(NetworkPlayer networkPlayer, NetworkViewID viewId, int pPosition, string shipId)
+    void CreatePlayerSpecificContent(NetworkPlayer networkPlayer, NetworkViewID viewId, int pPosition)
     {
         if (!Network.isServer)
         {
@@ -345,12 +366,12 @@ public class GameManager : MonoBehaviour
         }
 
         //Momentan nur das Schiff spawnen
-        SpawnGameContent(pPosition, shipId, networkPlayer, viewId);
+        SpawnGameContent(pPosition, networkPlayer, viewId);
     }
 
 
     [RPC]
-    void SpawnOnNetwork(Vector3 pos, Quaternion rot, NetworkViewID id1, NetworkViewID viewId, bool amOwner, NetworkPlayer np, int playerPosition, string shipId)
+    void SpawnOnNetwork(Vector3 pos, Quaternion rot, NetworkViewID id1, NetworkViewID viewId, bool amOwner, NetworkPlayer np, int playerPosition)
     {
         GameObject newObject;
         PlayerInfo pNode;
@@ -362,38 +383,39 @@ public class GameManager : MonoBehaviour
 
         switch (playerPosition)
         {
-            #region case 0:
+            #region case 0: WIRD MOMENTAN NICHT BENÖTIGT -> SERVER SEITIG
 
             case 0:
                 newObject = Instantiate(ServerPrefab, pos, rot) as GameObject;
-                newObject.name = "Ship" + shipId;
-                newObject.GetComponent<ShipLogic>().ShipName = newObject.name;
+                newObject.renderer.material.color = pNode.color;
+                newObject.name = "cube" + id1.ToString();
 
                 if (np == Network.player)
                 {
-                    ShipLogic ds = newObject.GetComponent<ShipLogic>();
+                    DynamicObjectScript ds = newObject.GetComponent<DynamicObjectScript>();
                     if (ds)
                     {
-                        ds.isMyObject = true;
+                        ds.offset = Random.Range(0f, 100f);
                     }
                     else
                     {
-                        Debug.Log("ShipLogic Object does not have ShipLogic attached");
+                        Debug.Log("Dynamic Object does not have DynamicObjectScript attached");
                     }
                 }
                 break;
 
             #endregion
 
-            #region 1: Helm
+            #region 1: Helm (Erzeugt das Schiff)
             case 1:
 
                 newObject = Instantiate(HelmPrefab, pos, rot) as GameObject;
-                if(newObject == null) throw new Exception("HelmObject was not Instantiate! This is a NullReferenceError!");
-                newObject.transform.parent = GameObject.Find(shipId).transform;
-                newObject.name = "Helm" + np.ToString();
+                //newObject.renderer.material.color = pNode.color;
+                newObject.name = "Player" + np.ToString();
+                newObject.GetComponent<Ship>().ShipID = newObject.name;
 
                 pNode.go = newObject;
+
 
                 StreamToClients streamToClients1 = newObject.GetComponent<StreamToClients>();
                 if (streamToClients1)
@@ -439,8 +461,8 @@ public class GameManager : MonoBehaviour
             case 3:
 
                 newObject = Instantiate(EngineerPrefab, pos, rot) as GameObject;
-                newObject.transform.parent = GameObject.Find(shipId).transform;
-                newObject.name = "Engineer" + np.ToString();
+                //newObject.renderer.material.color = pNode.color;
+                newObject.name = "Player" + np.ToString();
 
 
                 pNode.go = newObject;

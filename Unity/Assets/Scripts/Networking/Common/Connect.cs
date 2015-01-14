@@ -24,7 +24,8 @@ public class Connect : MonoBehaviour
     private HostData[] hostList;
 
     private string debugText;
-
+    private bool hasShipSelected = false;
+    private string MyShipId;
 
     // Supports both client and server setup
     void OnGUI()
@@ -72,31 +73,62 @@ public class Connect : MonoBehaviour
                 GUILayout.Label("Connection status: Client!");
                 GUILayout.Label("Ping to server: " + Network.GetAveragePing(Network.connections[0]));
 
+
                 if (GameManager.GameManagerObject != null)
                 {
-                    GameManager.PlayerInfo pInfo;
 
-                    GameManager.GameManagerObject.playerList.TryGetValue(Network.player, out pInfo);
-
-                    if (pInfo == null)
+                    if (!hasShipSelected)
                     {
+                        GameObject[] ships = GameObject.FindGameObjectsWithTag("Ship");
+
+                        if (ships.Length > 0)
+                        {
+                            GUILayout.BeginVertical();
+                            foreach (GameObject ship in ships)
+                            {
+                                if (GUILayout.Button("Connect to : " + ship.name))
+                                {
+                                    MyShipId = ship.name;
+                                    hasShipSelected = true;
+                                }
+                            }
+                            GUILayout.EndVertical();
+                        }
+                    }
+                    else
+                    {
+
+                        GameManager.PlayerInfo pInfo;
+
+                        GameManager.GameManagerObject.playerList.TryGetValue(Network.player, out pInfo);
+
+                        if (pInfo == null)
+                        {
                             GUILayout.BeginVertical();
                             if (GUILayout.Button("Connect as Helm"))
                             {
-                                GameManager.GameManagerObject.ConnectToServer(1);
+                                GameManager.GameManagerObject.ConnectToServer(1, MyShipId);
                             }
                             if (GUILayout.Button("Connect as Weapon"))
                             {
-                                GameManager.GameManagerObject.ConnectToServer(2);
+                                GameManager.GameManagerObject.ConnectToServer(2, MyShipId);
                             }
                             if (GUILayout.Button("Connect as Engineer"))
                             {
-                                GameManager.GameManagerObject.ConnectToServer(3);
+                                GameManager.GameManagerObject.ConnectToServer(3, MyShipId);
                             }
                             GUILayout.EndVertical();
-                        
+
+                        }
                     }
 
+                    GUILayout.BeginVertical();
+                    if (GUILayout.Button("Select other ship"))
+                    {
+                        MyShipId = null;
+                        hasShipSelected = false;
+                    }
+                    GUILayout.EndVertical();
                 }
 
             }
